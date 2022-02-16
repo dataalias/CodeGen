@@ -1,0 +1,68 @@
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>6CAFC0C6-A428-4d30-A9F9-700E829FEA51</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>MyApplication</RootNamespace>
+    <AssemblyName>MyApplication</AssemblyName>
+    <Name>PowerBus</Name>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="config\env\" />
+    <Folder Include="functions\" />
+    <Folder Include="config\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="functions\Add-BusProperty.ps1" />
+    <Compile Include="functions\Add-BusProperty.Tests.ps1" />
+    <Compile Include="functions\Assert-PreReqs.ps1" />
+    <Compile Include="functions\Assert-PreReqs.Tests.ps1" />
+    <Compile Include="functions\Get-APIBusMessageSubscription.ps1" />
+    <Compile Include="functions\Get-APIBusMessage.ps1" />
+    <Compile Include="functions\Get-APIBusMessage.Tests.ps1" />
+    <Compile Include="functions\Get-PrivateBusMessageSubscription.ps1" />
+    <Compile Include="functions\Get-PrivateBusMessage.ps1" />
+    <Compile Include="functions\Get-PrivateBusMessage.Tests.ps1" />
+    <Compile Include="functions\Import-Assembly.ps1" />
+    <Compile Include="functions\Import-Assembly.Tests.ps1" />
+    <Compile Include="functions\Send-APIBusMessageTopic.ps1" />
+    <Compile Include="functions\Send-APIBusMessage.ps1" />
+    <Compile Include="functions\Send-APIBusMessage.Tests.ps1" />
+    <Compile Include="functions\Send-PrivateBusMessageTopic.ps1" />
+    <Compile Include="functions\Send-PrivateBusMessage.ps1" />
+    <Compile Include="functions\Send-PrivateBusMessage.Tests.ps1" />
+    <Compile Include="PowerBus.psd1" />
+    <Compile Include="PowerBus.psm1" />
+    <Compile Include="PowerBus.tests.ps1" />
+    <Compile Include="Send-DataHubTopic.ps1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="config\env\ServiceBusConfig.json" />
+    <Content Include="config\ServiceBusConfig.json" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Target Name="Build" />
+  <Import Project="$(MSBuildExtensionsPath)\PowerShell Tools for Visual Studio\PowerShellTools.targets" Condition="Exists('$(MSBuildExtensionsPath)\PowerShell Tools for Visual Studio\PowerShellTools.targets')" />
+</Project>
