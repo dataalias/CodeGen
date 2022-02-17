@@ -12,7 +12,7 @@ Invoke-GetODSMergeCodeFromModelJSON -ModelLocation "c:\users\ochowkwale\Desktop\
 
 #Execute the scripts
 
-$dbServer = "DEDTEDLSQL01"
+$dbServer = "MyServer"
 
 $sqlCon = New-Object System.Data.SqlClient.SqlConnection
 $sqlCon.ConnectionString = "Server=$dbServer;Database=ODS;Connection Timeout=60;Integrated Security=True"
@@ -20,7 +20,7 @@ $sqlCon.ConnectionString = "Server=$dbServer;Database=ODS;Connection Timeout=60;
 $sqlCon.Open()
 
 
-$localScriptRoot = "C:\Users\ochowkwale\source\repos\SIS-CVue\Database\ODS\Tables"
+$localScriptRoot = "C:\MyFolder"
 $scripts = Get-ChildItem $localScriptRoot | Where-Object {$_.Extension -eq ".sql"}
  
 foreach ($s in $scripts)
@@ -31,7 +31,7 @@ foreach ($s in $scripts)
         $sqlCmd1.Dispose()
     }  
 
-$localScriptRoot = "C:\Users\ochowkwale\source\repos\SIS-CVue\Database\ODS\Stored Procedures"
+$localScriptRoot = "C:\MyFolder"
 $scripts = Get-ChildItem $localScriptRoot | Where-Object {$_.Extension -eq ".sql"}
  
 foreach ($s in $scripts)
