@@ -3,9 +3,14 @@ File:		Invoke-GetDDLFromModelJSON.ps1
 Name:		Invoke-GetDDLFromModelJSON
 Purpose:
 
+Invoke-GetDDLFromModelJSON -ModelLocation "c:\tmp\Model.JSON" -DDLLocation "c:\tmp\DDL\" -RefMethod "DLT" -TargetSchemaName "loan" 
 
-Parameters: JSON.Model
-			Directory to dump ddl to
+
+Parameters: 
+    ModelLocation: "c:\tmp\Model.JSON"
+    DDLLocation: "c:\tmp\DDL\"
+    RefMethod: "DLT"
+    TargetSchemaName: "dbo"
 
 Called by:	Humans
 Calls:          
@@ -130,20 +135,20 @@ try
     # This config file has a whole bunch of variables used in the script.
     try
     {
-	    $ModelJSONContent = Get-Content $ModelLocation -Raw | ConvertFrom-Json
+    $ModelLocation
+	    $ModelJSONContent = Get-Content -Path $ModelLocation | ConvertFrom-Json
     }
     catch
     {
-	    throw "Unable to load Model.JSON file." + $_.Exception.Message
+	    throw "Unable to load Model.JSON file. " + $_.Exception.Message
     }
 
     # Loop through entities
-
+    $ModelJSONContent
     $SourceSchemaName = $ModelJSONContent.name
     $Entities = $ModelJSONContent.Entities
 
     foreach ($Entity in $Entities)
-
     {
 
        write-host "Table Name: $($Entity.name)"

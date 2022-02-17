@@ -4,6 +4,12 @@ Name:		Invoke-GetODSMergeCodeFromModelJSON
 Purpose:
 
 
+Invoke-GetODSMergeCodeFromModelJSON -ml "c:\tmp\Model.JSON" -tl "C:\tmp\Template\" -dl "c:\tmp\DDL" -pl -sdb -tdb -tnsm
+ProcedureLocation: "c:\tmp:\Proc\"
+SourceDatabaseName: "College_Certifications"
+TargetDatabaseName: "College_Certifications"
+TargetSchemaName: "dbo"
+
 Parameters: JSON.Model
 			SQL Template
 
@@ -40,7 +46,7 @@ The code for the particular file being retreived.
 
 .EXAMPLE
 
-Invoke-GetODSMergeCodeFromModelJSON -ModelLocation "c:\tmp\Model.JSON" -TemplateLocation "c:\tmp\usp_TemplateMergeProcedure.sql" -dl "c:\tmp" -pl "c:\tmp" -sd "BPI_DW_STAGE" -td "ODS"
+Invoke-GetODSMergeCodeFromModelJSON -ml "c:\tmp\Model.JSON" -tl "c:\tmp\Template\usp_TemplateMergeProcedure.sql" -dl "c:\tmp" -pl "c:\tmp\procs" -sd "ODS" -td "ODS" -tsnm "dbo"
 
 #>
 

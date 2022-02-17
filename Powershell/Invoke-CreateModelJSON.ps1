@@ -1,10 +1,10 @@
 ﻿
 
-$dbSever='.'
-$db='College_Certifications'
+$dbServer='.'
+$db='ODS'
 $dbUser='N/A'
 $dbPassword='N/A'
-$dbSchema='dbo'
+$dbSchema='loan'
 $dbTable=''
 $dbColumn=''
 $JSON=''
@@ -24,9 +24,10 @@ $sqlCon = New-Object System.Data.SqlClient.SqlConnection
 $sqlCon.ConnectionString = "Server=$dbServer;Database=$db;Connection Timeout=60;Integrated Security=True"
 
 
-$sqlTableList = "SELECT /*Top 10*/ TABLE_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = '$dbSchema' 
+$sqlTableList = "SELECT /*Top 10*/ TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '$dbSchema' 
 /*AND TABLE_NAME in ('ACHDetails','Ascent_Borrower')*/ 
-Group By TABLE_NAME"
+And Table_Type <> 'VIEW'
+Group By TABLE_NAME Order By TABLE_NAME"
 
 
 $sqlCon.Open()
@@ -121,7 +122,7 @@ foreach ($Table in $dtTableList)
 		    ""Name"": ""$dbTable"",
 		    ""description"": """",
 		    ""pbi:refreshPolicy"": {
-			    ""$type"": ""DeltaRefreshPolicy"",
+			    ""type"": ""DeltaRefreshPolicy"",
 			    ""location"": ""$dbTable.csv""
 		    },
 		    ""Attributes"": [
