@@ -1,17 +1,18 @@
 ﻿
 
+
+$dbServer='devadw'
 $dbServer='goaldw'
+$db='ODS'
 $db='GS2_Staging'
 $dbUser='AscentReporting'
 $dbPassword='AscentReporting!'
 $dbSchema='Staging'
-$ModelJSONFullName = "D:\users\ffortunato\tmp\Model.json"
-
-
 $dbTable=''
 $dbColumn=''
 $JSON=''
 $Version='1.0.0.0'
+$OutFile = "D:\Users\ffortunato\Documents\tmp\Model.JSON"
 
 $TableCount=1
 $ColumnCount=1
@@ -24,14 +25,16 @@ $ColumnMaxCount=-1
 
 $sqlCon = New-Object System.Data.SqlClient.SqlConnection
 $sqlCon.ConnectionString = "Server=$dbServer;Database=$db;Connection Timeout=60;User=$dbUser;Password=$dbPassword"
-#$sqlCon.ConnectionString = "Server=$dbServer;Database=$db;Connection Timeout=60;Integrated Security=True"
 
+#$sqlCon.ConnectionString = "Server=$dbServer;Database=$db;Connection Timeout=60;Integrated Security=True"
+$sqlCon.ConnectionString.ToString()
 
 $sqlTableList = "SELECT /*Top 10*/ TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '$dbSchema' 
 /*AND TABLE_NAME in ('ACHDetails','Ascent_Borrower')*/ 
 And Table_Type <> 'VIEW'
 Group By TABLE_NAME Order By TABLE_NAME"
 
+"Open Connection"
 
 $sqlCon.Open()
 $sqlAdapter = New-Object System.Data.SqlClient.SqlDataAdapter ("$sqlTableList", $sqlCon)
@@ -184,6 +187,6 @@ foreach ($Table in $dtTableList)
 
 $JSONString = $JSONString + "}"
 
-$JSONString | Out-File -FilePath $ModelJSONFullName 
+$JSONString | Out-File -FilePath $OutFile
 
 $sqlCon.Dispose()

@@ -4,7 +4,9 @@ Name:		Invoke-GetODSMergeCodeFromModelJSON
 Purpose:
 
 
-Invoke-GetODSMergeCodeFromModelJSON -ml "c:\tmp\Model.JSON" -tl "C:\tmp\Template\" -dl "c:\tmp\DDL" -pl -sdb -tdb -tnsm
+Invoke-GetODSMergeCodeFromModelJSON -ml "D:\Users\ffortunato\Documents\tmp\Model.JSON" -tl "D:\Users\ffortunato\Documents\tmp\usp_TemplateMergeProcedure.sql" -dl "D:\Users\ffortunato\Documents\tmp\DDL" -pl "D:\Users\ffortunato\Documents\tmp\procs" -sdb "GS2_STaging" -tdb "ODS" -tsnm 'loan'
+
+
 ProcedureLocation: "c:\tmp:\Proc\"
 SourceDatabaseName: "College_Certifications"
 TargetDatabaseName: "College_Certifications"
@@ -234,8 +236,9 @@ try
         $ProcedureName = "usp_Load$($Entity.name)"
         $ProcedureFile = "$ProcedureLocation\$TargetSchemaName.usp_Load$($Entity.name).sql"
 
-        "ProcedureName: $ProcedureName"
-        "ProcedureFile: $ProcedureFile"
+        "TemplateLocation: $TemplateLocation"
+        "ProcedureName:    $ProcedureName"
+        "ProcedureFile:    $ProcedureFile"
 
         Copy-Item -Path "$TemplateLocation" -Destination $ProcedureFile -Force
 

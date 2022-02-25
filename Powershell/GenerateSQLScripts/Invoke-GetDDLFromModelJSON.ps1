@@ -4,6 +4,7 @@ Name:		Invoke-GetDDLFromModelJSON
 Purpose:
 
 Invoke-GetDDLFromModelJSON -ModelLocation "c:\tmp\Model.JSON" -DDLLocation "c:\tmp\DDL\" -RefMethod "DLT" -TargetSchemaName "loan" 
+Invoke-GetDDLFromModelJSON -ModelLocation "D:\Users\ffortunato\Documents\tmp\Model.JSON" -DDLLocation "D:\Users\ffortunato\Documents\tmp\DDL\" -RefMethod "DLT" -TargetSchemaName "loan" 
 
 
 Parameters: 
@@ -106,6 +107,7 @@ try
     $ParameterList  = ""
     $ParameterInsert  = ""
     $date = date
+    $dateStr = $date.ToString("yyyyMMdd")
     $version = "1.3.0.0"
     $timeZone = 'PST'
     $FileContent = ''
@@ -273,6 +275,21 @@ WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = $TargetSchemaName.$($TableName)His
 
         "ProcedureName: $DDLName"
         "ProcedureFile: $DDLFile"
+
+        $FileContent = $FileContent +
+"
+
+/******************************************************************************
+       change history
+*******************************************************************************
+date		author			description
+--------	-------------	---------------------------------------------------
+$dateStr	Auto Gen		initial iteration
+							
+
+******************************************************************************/
+"
+
 
         $FileContent | Out-File -FilePath $DDLFile
 
