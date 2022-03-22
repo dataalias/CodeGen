@@ -1,18 +1,18 @@
 ﻿
 
 
-$dbServer='devadw'
-$dbServer='goaldw'
-$db='ODS'
-$db='GS2_Staging'
-$dbUser='AscentReporting'
-$dbPassword='AscentReporting!'
+$dbServer='**********'
+$dbServer='**********'
+$db='**********'
+$db='**********'
+$dbUser='**********'
+$dbPassword='**********'
 $dbSchema='Staging'
 $dbTable=''
 $dbColumn=''
 $JSON=''
 $Version='1.0.0.0'
-$OutFile = "D:\Users\ffortunato\Documents\tmp\Model.JSON"
+$OutFile = "D:\tmp\Model.JSON"
 
 $TableCount=1
 $ColumnCount=1
